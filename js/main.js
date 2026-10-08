@@ -55,13 +55,13 @@ function onSubmit(event) {
 
     // - validera inmatningen
     if (validateForm(name, email, phone)) {
-
+        // - skapa studentkort om valideringen lyckas
+        createStudentCard(name, email, phone);
     }
 
 
 }
 
-// - skapa studentkort om valideringen lyckas
 
 /**
  * Validerar formulärets inmatning.
@@ -112,14 +112,35 @@ function displayErrors() {
 /**
  * Skapar ett studentkort och visar det på sidan.
  */
-function createStudentCard() {
-    // Hämta information från formuläret
+function createStudentCard(name, email, phone) {
+    // Hämta och applicera valt typsnitt
+    const font = fontSelectEl.value;
+
+    const cardInfoEls = document.querySelectorAll(".card-info");
+
+    cardInfoEls.forEach(element => {
+        element.style.fontFamily = font; 
+    });
 
     // Uppdatera studentkortet
+    cardNameEl.textContent = name;
+    cardEmailEl.textContent = email;
+    cardPhoneEl.textContent = phone;
+
+    // Skapa studentobjekt
+    const student = {
+        name: name,
+        email: email,
+        phone: phone,
+        font: font
+    };
 
     // Lägg till studentkortet i historiken
+    history.push(student);
 
     // Spara och uppdatera historiken
+    saveHistory();
+    renderHistory();
 }
 
 
@@ -128,6 +149,9 @@ function createStudentCard() {
  */
 function saveHistory() {
     // Spara history i localStorage
+    const historyJson = JSON.stringify(history);
+
+    localStorage.setItem("history", historyJson);
 }
 
 
@@ -136,8 +160,13 @@ function saveHistory() {
  */
 function loadHistory() {
     // Hämta eventuell sparad historik
+    const storedHistory = localStorage.getItem("history");
 
     // Uppdatera history
+    if (storedHistory !== null) {
+        history = JSON.parse(storedHistory);
+    }
+
 }
 
 
@@ -145,9 +174,29 @@ function loadHistory() {
  * Visar historiken på sidan.
  */
 function renderHistory() {
-    // Rensa tidigare visad historik
+    // Rensa tidigare visad historik för att undvika dubbletter
+    historySectionEl.innerHTML = "";
 
-    // Skriv ut innehållet i history till DOM
+    // Loopa baklänges så att senaste studentkortet visas överst
+    for (let i = history.length - 1; i >= 0; i--) {
+        
+        // Skapa en sektion för varje studentkort i historiken 
+        const sectionEl = document.createElement("section");
+
+        // Skapa ett textelement för studentens uppgifter
+        const pEl = document.createElement("p");
+        pEl.textContent = 
+            `Namn: ${history[i].name} 
+            E-post: ${history[i].email} 
+            Telefon: ${history[i].phone} 
+            Typsnitt: ${history[i].font}`;
+        
+        pEl.style.whiteSpace = "pre-line";
+
+        // Lägg till nya element i DOM
+        sectionEl.appendChild(pEl);
+        historySectionEl.appendChild(sectionEl);
+    }
 }
 
 
