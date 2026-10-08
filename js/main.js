@@ -30,8 +30,8 @@ let errors = [];
 // Array som innehåller sparade studentkort
 let history = [];
 
-// --- 3. Eventlyssnare ---
 
+// --- 3. Eventlyssnare ---
 formEl.addEventListener("submit", onSubmit); // När användaren klickar på "Spara användare"
 clearBtnEl.addEventListener("click", clearForm); // När användaren klickar på "Rensa"
 deleteHistoryBtnEl.addEventListener("click", deleteHistory); // När användaren klickar på "Radera historik"
@@ -41,13 +41,22 @@ deleteHistoryBtnEl.addEventListener("click", deleteHistory); // När användaren
 window.addEventListener("load", function() {    
 }) */
 
+
 // --- 4. Funktioner ---
 
 // När formuläret skickas:
-function onSubmit() {
+function onSubmit(event) {
+    
+    // Hämta värden från formuläret
+    /* const name = nameInputEl.value.trim(); 
+    const email = emailInputEl.value.trim();
+    const phone = phoneInputEl.value.trim(); */
+
+    // - validera inmatningen
+
 
 }
-// - validera inmatningen
+
 // - skapa studentkort om valideringen lyckas
 
 /**
@@ -68,8 +77,13 @@ function validateForm() {
  */
 function displayErrors() {
     // Rensa tidigare felmeddelanden
-
+    errorListEl.innerHTML = "";
     // Skriv ut aktuella felmeddelanden till DOM
+    for(let i = 0; i < errors.length; i++) {
+        const liEl = document.createElement("li");
+        liEl.textContent = errors[i];
+        errorListEl.appendChild(liEl);
+    }   
 }
 
 
