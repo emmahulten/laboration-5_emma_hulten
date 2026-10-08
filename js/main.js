@@ -1,32 +1,53 @@
 "use strict";
 /*
  * Laboration 5 - Studentkortsgenerator
- * Namn: DITT NAMN
+ * Namn: Emma Hultén
  */
 
+// --- 1. DOM-referenser ---
 // Hämta element från DOM
-const form = document.querySelector("#studentform");
-const clearButton = document.querySelector("#clear");
+const formEl = document.querySelector("#studentform");
+const clearBtnEl = document.querySelector("#clear");
 
-const fullnameInput = document.querySelector("#fullname");
-const emailInput = document.querySelector("#email");
-const phoneInput = document.querySelector("#phone");
-const fontSelect = document.querySelector("#font");
+const nameInputEl = document.querySelector("#fullname");
+const emailInputEl = document.querySelector("#email");
+const phoneInputEl = document.querySelector("#phone");
+const fontSelectEl = document.querySelector("#font");
 
-const previewFullname = document.querySelector("#previewfullname");
-const previewEmail = document.querySelector("#previewemail");
-const previewPhone = document.querySelector("#previewphone");
+const cardNameEl = document.querySelector("#previewfullname");
+const cardEmailEl = document.querySelector("#previewemail");
+const cardPhoneEl = document.querySelector("#previewphone");
 
-const errorList = document.querySelector("#errorlist");
-const historySection = document.querySelector("#history");
-const deleteHistoryButton = document.querySelector("#delete");
+const errorListEl = document.querySelector("#errorlist");
+const historySectionEl = document.querySelector("#history");
+const deleteHistoryBtnEl = document.querySelector("#delete");
 
 
+// --- 2. Variabler ---
 // Array som används för felmeddelanden
 let errors = [];
 
 // Array som innehåller sparade studentkort
 let history = [];
+
+// --- 3. Eventlyssnare ---
+
+
+// När formuläret skickas:
+// - validera inmatningen
+// - skapa studentkort om valideringen lyckas
+
+
+// När användaren klickar på "Rensa"
+
+
+// När användaren klickar på "Radera historik"
+
+
+// När sidan laddas:
+// - läs in och visa eventuell tidigare historik
+
+// --- 4. Funktioner ---
 
 /**
  * Validerar formulärets inmatning.
@@ -112,19 +133,3 @@ function deleteHistory() {
     // Uppdatera history och visningen på sidan
 }
 
-
-// Eventlyssnare
-
-// När formuläret skickas:
-// - validera inmatningen
-// - skapa studentkort om valideringen lyckas
-
-
-// När användaren klickar på "Rensa"
-
-
-// När användaren klickar på "Radera historik"
-
-
-// När sidan laddas:
-// - läs in och visa eventuell tidigare historik
