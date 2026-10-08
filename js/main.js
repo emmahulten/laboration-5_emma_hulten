@@ -32,22 +32,23 @@ let history = [];
 
 // --- 3. Eventlyssnare ---
 
+formEl.addEventListener("submit", onSubmit); // När användaren klickar på "Spara användare"
+clearBtnEl.addEventListener("click", clearForm); // När användaren klickar på "Rensa"
+deleteHistoryBtnEl.addEventListener("click", deleteHistory); // När användaren klickar på "Radera historik"
 
-// När formuläret skickas:
-// - validera inmatningen
-// - skapa studentkort om valideringen lyckas
-
-
-// När användaren klickar på "Rensa"
-
-
-// När användaren klickar på "Radera historik"
-
-
-// När sidan laddas:
-// - läs in och visa eventuell tidigare historik
+/* To do: 
+// När sidan laddas: - läs in och visa eventuell tidigare historik
+window.addEventListener("load", function() {    
+}) */
 
 // --- 4. Funktioner ---
+
+// När formuläret skickas:
+function onSubmit() {
+
+}
+// - validera inmatningen
+// - skapa studentkort om valideringen lyckas
 
 /**
  * Validerar formulärets inmatning.
