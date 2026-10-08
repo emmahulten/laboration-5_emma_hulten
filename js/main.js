@@ -46,13 +46,17 @@ window.addEventListener("load", function() {
 
 // När formuläret skickas:
 function onSubmit(event) {
+    event.preventDefault(); 
     
     // Hämta värden från formuläret
-    /* const name = nameInputEl.value.trim(); 
+    const name = nameInputEl.value.trim(); 
     const email = emailInputEl.value.trim();
-    const phone = phoneInputEl.value.trim(); */
+    const phone = phoneInputEl.value.trim();
 
     // - validera inmatningen
+    if (validateForm(name, email, phone)) {
+
+    }
 
 
 }
@@ -63,12 +67,30 @@ function onSubmit(event) {
  * Validerar formulärets inmatning.
  * @returns {boolean}
  */
-function validateForm() {
-    // Kontrollera formulärets obligatoriska fält
+function validateForm(name, email, phone) {
+    // Rensa tidigare fel från arrayen 
+    errors = [];
+
+    // Validera namn-input
+    if (name === "") {
+        errors.push("Ange ditt namn.");
+    }
+
+    // Validera email-input
+    if (email === "") {
+        errors.push("Ange din e-postadress.");
+    }
+
+    // Validera phone-input 
+    if (phone === "") {
+        errors.push("Ange ditt telefonnummer.")
+    }
 
     // Visa eventuella felmeddelanden
+    displayErrors();
 
     // Returnera resultatet (true eller false) av valideringen
+    return errors.length === 0;
 }
 
 
