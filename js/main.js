@@ -36,10 +36,11 @@ formEl.addEventListener("submit", onSubmit); // När användaren klickar på "Sp
 clearBtnEl.addEventListener("click", clearForm); // När användaren klickar på "Rensa"
 deleteHistoryBtnEl.addEventListener("click", deleteHistory); // När användaren klickar på "Radera historik"
 
-/* To do: 
-// När sidan laddas: - läs in och visa eventuell tidigare historik
-window.addEventListener("load", function() {    
-}) */
+// När sidan laddas: läs in och visa eventuell tidigare historik
+window.addEventListener("load", function() {
+    loadHistory();
+    renderHistory();
+});
 
 
 // --- 4. Funktioner ---
@@ -62,7 +63,6 @@ function onSubmit(event) {
 
 }
 
-console.log(history);
 
 /**
  * Validerar formulärets inmatning.
