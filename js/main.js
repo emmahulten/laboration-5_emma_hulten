@@ -32,7 +32,7 @@ let history = [];
 
 
 // --- 3. Eventlyssnare ---
-formEl.addEventListener("submit", onSubmit); // När användaren klickar på "Spara användare"
+formEl.addEventListener("submit", onSubmit); // När formuläret skickas
 clearBtnEl.addEventListener("click", clearForm); // När användaren klickar på "Rensa"
 deleteHistoryBtnEl.addEventListener("click", deleteHistory); // När användaren klickar på "Radera historik"
 
@@ -72,19 +72,19 @@ function validateForm(name, email, phone) {
     // Rensa tidigare fel från arrayen 
     errors = [];
 
-    // Validera namn-input
+    // Kontrollera att namn är ifyllt
     if (name === "") {
         errors.push("Ange ditt namn.");
     }
 
-    // Validera email-input
+    // Kontrollera att e-post är ifyllt
     if (email === "") {
         errors.push("Ange din e-postadress.");
     }
 
-    // Validera phone-input 
+    // Kontrollera att telefon är ifyllt
     if (phone === "") {
-        errors.push("Ange ditt telefonnummer.")
+        errors.push("Ange ditt telefonnummer.");
     }
 
     // Visa eventuella felmeddelanden
@@ -101,8 +101,9 @@ function validateForm(name, email, phone) {
 function displayErrors() {
     // Rensa tidigare felmeddelanden
     errorListEl.innerHTML = "";
+
     // Skriv ut aktuella felmeddelanden till DOM
-    for(let i = 0; i < errors.length; i++) {
+    for (let i = 0; i < errors.length; i++) {
         const liEl = document.createElement("li");
         liEl.textContent = errors[i];
         errorListEl.appendChild(liEl);
@@ -111,7 +112,7 @@ function displayErrors() {
 
 
 /**
- * Skapar ett studentkort och visar det på sidan.
+ * Skapar ett studentkort.
  */
 function createStudentCard(name, email, phone) {
     // Hämta och applicera valt typsnitt
@@ -149,7 +150,6 @@ function createStudentCard(name, email, phone) {
  * Sparar historiken i localStorage.
  */
 function saveHistory() {
-    // Spara history i localStorage
     const historyJson = JSON.stringify(history);
 
     localStorage.setItem("history", historyJson);
@@ -163,11 +163,10 @@ function loadHistory() {
     // Hämta eventuell sparad historik
     const storedHistory = localStorage.getItem("history");
 
-    // Uppdatera history
+    // Läs in sparad historik till arrayen
     if (storedHistory !== null) {
         history = JSON.parse(storedHistory);
     }
-
 }
 
 
