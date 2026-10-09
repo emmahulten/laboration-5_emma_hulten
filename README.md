@@ -17,4 +17,4 @@ Applikationen innehåller:
 - Web Storage(localStorage)
 
 📰 Publicerad webbplats
-- 
+- [GitHub Pages](https://emmahulten.github.io/laboration-5_emma_hulten/)
