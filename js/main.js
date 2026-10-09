@@ -45,7 +45,7 @@ window.addEventListener("load", function() {
 
 // --- 4. Funktioner ---
 
-// När formuläret skickas:
+// Hantera formulärets submit-event 
 function onSubmit(event) {
     event.preventDefault(); 
     
@@ -54,13 +54,13 @@ function onSubmit(event) {
     const email = emailInputEl.value.trim();
     const phone = phoneInputEl.value.trim();
 
-    // - validera inmatningen
+    // Validera inmatningen
     if (validateForm(name, email, phone)) {
-        // - skapa studentkort om valideringen lyckas
+        // Skapa studentkort om valideringen lyckas
         createStudentCard(name, email, phone);
+        // Återställ formuläret inför nästa inmatning 
+        formEl.reset();
     }
-
-
 }
 
 
@@ -238,4 +238,3 @@ function deleteHistory() {
     history = [];
     historySectionEl.innerHTML = "";
 }
-
