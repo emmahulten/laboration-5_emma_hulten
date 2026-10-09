@@ -62,6 +62,7 @@ function onSubmit(event) {
 
 }
 
+console.log(history);
 
 /**
  * Validerar formulärets inmatning.
@@ -204,9 +205,25 @@ function renderHistory() {
  * Rensar formulär, aktuellt studentkort och felmeddelanden.
  */
 function clearForm() {
-    // Återställ formulär och studentkort
+    // Återställ formulärfält och studentkortets innehåll
+    nameInputEl.value = "";
+    emailInputEl.value = "";
+    phoneInputEl.value = "";
+    fontSelectEl.value = "Georgia";
 
+    cardNameEl.textContent = "Namn";
+    cardEmailEl.textContent = "E-post";
+    cardPhoneEl.textContent = "Telefon";
+
+    // Återställ typsnitt i studentkort
+    const cardInfoEls = document.querySelectorAll(".card-info");
+
+    cardInfoEls.forEach(element => {
+        element.style.fontFamily = ""; 
+    });
+   
     // Rensa eventuella felmeddelanden
+    errorListEl.innerHTML = "";
 }
 
 
@@ -215,7 +232,10 @@ function clearForm() {
  */
 function deleteHistory() {
     // Radera sparad historik
+    localStorage.removeItem("history");
 
     // Uppdatera history och visningen på sidan
+    history = [];
+    historySectionEl.innerHTML = "";
 }
 
